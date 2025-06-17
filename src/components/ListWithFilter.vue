@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue'
+import { computed, ref } from 'vue';
 
 const props = defineProps({
   transactions: {
@@ -8,31 +8,23 @@ const props = defineProps({
   },
 })
 
-var searchKeyword = ref()
-var parsedTransactions = parseTransactions(props.transactions)
-var filteredTransactions = ref(parsedTransactions)
-var totalAmount = ref(0)
+const filterKeyword = ref("");
+const parsedTransactions = computed(() => {
+    return JSON.parse(props.transactions)
+});
 
-function parseTransactions() {
-  return JSON.parse(props.transactions)
-}
+const filteredTransactions = computed(() => {
+    return parsedTransactions.value.filter((value) => {
+        return value.merchant.includes(filterKeyword.value);        
+    })
+});
 
-function filter() {
-  filteredTransactions.value = parsedTransactions.filter((word) =>
-    word.merchant.includes(searchKeyword.value),
-  )
-  calculateTotalAmount()
-}
+const totalAmount = computed(() => {
+    return filteredTransactions.value.reduce((sum, transaction) => {
+        return sum + (Number(transaction.amount) || 0);
+    }, 0)
+});
 
-function calculateTotalAmount() {
-  totalAmount.value = 0
-  console.log(filteredTransactions)
-  for (let i = 0; i < filteredTransactions.value.length; i++) {
-    totalAmount.value += filteredTransactions.value[i].amount
-  }
-}
-
-calculateTotalAmount()
 </script>
 
 <!--
@@ -48,22 +40,26 @@ const transactions = [
 -->
 
 <template>
-  <div class="flex items-center">
-    <div>Filter</div>
-    <input
-      name="filter"
-      id="fiter"
-      class="border rounded border-gray-400 h-8 mx-2 p-2 text-gray-600"
-      v-model="searchKeyword"
-      @input="filter"
-    />
+  <div>
+    <div class="flex items-center">
+        <div class="font-bold text-sky-800">Filter</div>
+        <input 
+            v-model = "filterKeyword"
+            class="p-2 ms-4 border border-gray-300 rounded text-gray-500"></input>
+    </div>
+
+    <div class="mt-4">
+        <li class="ms-14" v-for="transaction in filteredTransactions">
+            {{ transaction.merchant }} = 
+            <span v-if="transaction.amount < 0" class="text-red-500"> {{ transaction.amount }}</span>
+            <span v-else class="text-green-500"> {{ transaction.amount }}</span>
+        </li>
+    </div>
+    <hr class="text-gray-200 my-4"/>
+    <div class="mt-4">
+        <span class="font-bold text-sky-800">TotalAmount : </span> {{ totalAmount }}
+    </div>
+
   </div>
-  <div class="mt-4 ms-14">
-    <li v-for="transaction in filteredTransactions">
-      {{ transaction.id }} : {{ transaction.merchant }} =
-      <span v-if="transaction.amount > 0" class="text-green-500">{{ transaction.amount }} </span>
-      <span v-else class="text-red-500">{{ transaction.amount }} </span>
-    </li>
-  </div>
-  <div class="mt-4 font-bold">Sum : {{ totalAmount }}</div>
+
 </template>
