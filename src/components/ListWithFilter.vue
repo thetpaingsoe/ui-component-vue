@@ -10,7 +10,11 @@ const props = defineProps({
 
 const filterKeyword = ref("");
 const parsedTransactions = computed(() => {
-    return JSON.parse(props.transactions)
+    try{
+        return JSON.parse(props.transactions)
+    }catch{
+        return [];
+    }    
 });
 
 const filteredTransactions = computed(() => {
@@ -24,6 +28,10 @@ const totalAmount = computed(() => {
         return sum + (Number(transaction.amount) || 0);
     }, 0)
 });
+
+const warningMessage = computed(() => {
+    return totalAmount.value > 100 ? "Too much amount!" : ""
+})
 
 </script>
 
@@ -45,8 +53,10 @@ const transactions = [
         <div class="font-bold text-sky-800">Filter</div>
         <input 
             v-model = "filterKeyword"
+            id="filter"
             class="p-2 ms-4 border border-gray-300 rounded text-gray-500"></input>
     </div>
+    
 
     <div class="mt-4">
         <li class="ms-14" v-for="transaction in filteredTransactions">
@@ -58,6 +68,7 @@ const transactions = [
     <hr class="text-gray-200 my-4"/>
     <div class="mt-4">
         <span class="font-bold text-sky-800">TotalAmount : </span> {{ totalAmount }}
+        <div class="text-sm text-yellow-500" >{{ warningMessage }}</div>
     </div>
 
   </div>
