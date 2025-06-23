@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
-import Components from '@/views/Components.vue'
+import ComponentView from '@/views/ComponentView.vue'
+import ListWithFilterView from '@/views/ListWithFilterView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -11,9 +12,14 @@ const router = createRouter({
       component: HomeView,
     },
     {
+      path: '/list-with-filters',
+      name: 'list-with-filters',
+      component: ListWithFilterView,
+    },
+    {
       path: '/components',
       name: 'components',
-      component: Components,
+      component: ComponentView,
     },
     {
       path: '/about',
