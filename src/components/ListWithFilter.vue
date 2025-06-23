@@ -3,23 +3,16 @@ import { computed, ref } from 'vue';
 
 const props = defineProps({
   transactions: {
-    type: String,
+    type: Array,
     required: true,
+    default : () => []
   },
 })
 
 const filterKeyword = ref("");
-const parsedTransactions = computed(() => {
-    try{
-        return JSON.parse(props.transactions)
-    }catch{
-        return [];
-    }    
-});
-
 const filteredTransactions = computed(() => {
-    return parsedTransactions.value.filter((value) => {
-        return value.merchant.includes(filterKeyword.value);        
+    return props.transactions.filter((value) => {
+        return String(value.merchant || "").toLowerCase().includes(filterKeyword.value.toLowerCase());        
     })
 });
 
@@ -48,26 +41,25 @@ const transactions = [
 -->
 
 <template>
-  <div>
-    <div class="flex items-center">
-        <div class="font-bold text-sky-800">Filter</div>
+  <div class="">
+    <div>
+        <label for="filter" class="font-bold text-gary-800">Filter</label>
         <input 
             v-model = "filterKeyword"
             id="filter"
-            class="p-2 ms-4 border border-gray-300 rounded text-gray-500"></input>
+            class="p-2 ms-4 border border-gray-300 rounded text-gray-700"></input>
     </div>
     
-
-    <div class="mt-4">
-        <li class="ms-14" v-for="transaction in filteredTransactions">
-            {{ transaction.merchant }} = 
-            <span v-if="transaction.amount < 0" class="text-red-500"> {{ transaction.amount }}</span>
-            <span v-else class="text-green-500"> {{ transaction.amount }}</span>
+    <ul class="mt-6">
+        <li class="ms-14 mt-2" v-for="transaction in filteredTransactions" :key="transaction.id">
+            {{ transaction.merchant }} : 
+            <span v-if="transaction.amount < 0" class="text-red-700"> {{ transaction.amount.toFixed(2) }}</span>
+            <span v-else class="text-green-700"> {{ transaction.amount.toFixed(2) }}</span>
         </li>
-    </div>
-    <hr class="text-gray-200 my-4"/>
+    </ul>
+    <div class=" border-t border-dashed mt-4 border-gray-300"/>
     <div class="mt-4">
-        <span class="font-bold text-sky-800">TotalAmount : </span> {{ totalAmount }}
+        <span class="font-bold text-gary-800">TotalAmount : </span> {{ totalAmount.toFixed(2) }}
         <div class="text-sm text-yellow-500" >{{ warningMessage }}</div>
     </div>
 
