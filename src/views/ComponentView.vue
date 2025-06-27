@@ -1,6 +1,7 @@
 <script setup>
 import Button from '@/components/Button.vue'
 import Divider from '@/components/Divider.vue'
+import Dropdown from '@/components/Dropdown.vue'
 import Link from '@/components/Link.vue'
 import Radio from '@/components/Radio.vue'
 import { ref } from 'vue'
@@ -15,16 +16,24 @@ function buttonPressed() {
   }, 1000)
 }
 
-const selectedRadio = ref('three')
+const selectedOption = ref('Audi')
+function getOptions() {
+  return ['BMW', 'Audi']
+}
+
+const selectedRadio = ref('Three')
 </script>
+
 <template>
   <main class="">
     <!-- Buttons -->
     <div class="font-bold mb-2">Buttons</div>
     <Button @click="buttonPressed">Submit</Button>
+
     <div class="text-sm text-green-700 ms-1 mt-4">
       {{ submitStatus }}
     </div>
+
     <Divider />
 
     <!-- Links -->
@@ -33,7 +42,7 @@ const selectedRadio = ref('three')
     <Divider class="mt-4" />
 
     <!-- Radio -->
-    <div class="font-bod mt-4">Radio</div>
+    <div class="font-bold mt-4">Radio</div>
     <Radio
       id="one"
       name="test"
@@ -61,7 +70,16 @@ const selectedRadio = ref('three')
     >
       Three
     </Radio>
+    <Divider class="mt-4" />
 
-    <!-- <Radio is-checked="true" id="one"> Testing </Radio> -->
+    <!-- Dropdown -->
+    <div class="font-bold mt-4">Dropdown</div>
+
+    <Dropdown
+      id="cars"
+      :selectedVal="selectedOption"
+      :options="getOptions()"
+      @update:selected-option="selectedOption = $event"
+    />
   </main>
 </template>

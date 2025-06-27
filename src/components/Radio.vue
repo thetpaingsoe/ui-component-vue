@@ -1,7 +1,6 @@
 <script setup>
 import { defineProps, defineEmits, ref } from 'vue'
 
-const radioRef = ref(null)
 const emits = defineEmits(['update:modelValue'])
 
 const props = defineProps({
@@ -25,15 +24,16 @@ function onChange() {
 </script>
 
 <template>
-  <div class="cursor-pointer">
+  <div>
     <input
-      ref="radioRef"
+      :id="`radio-${value}`"
       type="radio"
+      class="cursor-pointer"
       :value="value"
       :name="name"
       :checked="modelValue === value"
       @change="onChange"
     />
-    <span class="ms-2" @click="radioRef.click()"> {{ value }} </span>
+    <label class="ms-2 cursor-pointer" :for="`radio-${value}`"> {{ value }}</label>
   </div>
 </template>
