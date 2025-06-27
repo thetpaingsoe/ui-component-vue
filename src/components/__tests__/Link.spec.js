@@ -42,9 +42,13 @@ describe('Link Test', () => {
       props: {
         url: url,
       },
+      slots: {
+        default: 'Google',
+      },
     })
 
     await wrapper.find('a').trigger('click')
+    console.log(wrapper.emitted())
     expect(wrapper.emitted()).toHaveProperty('click')
   })
 })
