@@ -1,5 +1,5 @@
 <script setup>
-import { defineProps, defineEmits, ref } from 'vue'
+import { defineProps, defineEmits, ref, computed } from 'vue'
 
 const emits = defineEmits(['update:modelValue'])
 
@@ -18,6 +18,15 @@ const props = defineProps({
   },
 })
 
+const pValue = computed({
+  get() {
+    return props.modelValue
+  },
+  set() {
+    emits('update:modelValue', props.value)
+  },
+})
+
 function onChange() {
   emits('update:modelValue', props.value)
 }
@@ -31,8 +40,7 @@ function onChange() {
       class="cursor-pointer"
       :value="value"
       :name="name"
-      :checked="modelValue === value"
-      @change="onChange"
+      v-model="pValue"
     />
     <label class="ms-2 cursor-pointer" :for="`radio-${value}`"> {{ value }}</label>
   </div>

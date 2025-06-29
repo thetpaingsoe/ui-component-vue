@@ -63,7 +63,7 @@ describe('Radio Testing.', () => {
     console.log(radio.element.outerHTML)
     expect(radio.element.checked).toBe(false)
 
-    const title = wrapper.find('span')
+    const title = wrapper.find('label')
     await title.trigger('click')
     await wrapper.vm.$nextTick()
 
