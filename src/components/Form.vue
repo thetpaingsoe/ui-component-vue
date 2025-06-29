@@ -11,6 +11,12 @@ function submit() {
       class="mt-2 px-4 py-2 border border-gray-300 rounded"
     />
 
+    <textarea
+      id="description"
+      placeholder="Description"
+      class="mt-2 px-4 py-2 border border-gray-300 rounded"
+    ></textarea>
+
     <div class="mt-4">
       <input type="radio" id="radio" />
       <label for="radio" class="ms-2">Radio </label>
