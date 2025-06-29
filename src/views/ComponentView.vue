@@ -1,7 +1,9 @@
 <script setup>
 import Button from '@/components/Button.vue'
+import Checkbox from '@/components/Checkbox.vue'
 import Divider from '@/components/Divider.vue'
 import Dropdown from '@/components/Dropdown.vue'
+import Form from '@/components/Form.vue'
 import Link from '@/components/Link.vue'
 import Radio from '@/components/Radio.vue'
 import { ref } from 'vue'
@@ -22,6 +24,12 @@ function getOptions() {
 }
 
 const selectedRadio = ref('Three')
+
+const isChecked = ref(true)
+function test(status) {
+  alert(status)
+  isChecked.value = status
+}
 </script>
 
 <template>
@@ -81,5 +89,16 @@ const selectedRadio = ref('Three')
       :options="getOptions()"
       @update:selected-option="selectedOption = $event"
     />
+    <Divider class="mt-4" />
+
+    <!-- Checkbox -->
+    <div class="font-bold mt-4">Checkbox</div>
+    <Checkbox :value="isChecked" id="agree" title="Do you agree?" @update:check="test($event)" />
+    <div>{{ isChecked }}</div>
+    <Divider class="mt-4" />
+
+    <!-- Form -->
+    <div class="font-bold mt-4">Form</div>
+    <Form />
   </main>
 </template>

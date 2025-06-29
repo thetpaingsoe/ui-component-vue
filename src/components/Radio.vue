@@ -26,10 +26,6 @@ const pValue = computed({
     emits('update:modelValue', props.value)
   },
 })
-
-function onChange() {
-  emits('update:modelValue', props.value)
-}
 </script>
 
 <template>
