@@ -4,6 +4,7 @@ import Checkbox from '@/components/Checkbox.vue'
 import Divider from '@/components/Divider.vue'
 import Dropdown from '@/components/Dropdown.vue'
 import Form from '@/components/Form.vue'
+import Table from '@/components/Table.vue'
 import Link from '@/components/Link.vue'
 import Radio from '@/components/Radio.vue'
 import { ref } from 'vue'
@@ -29,6 +30,15 @@ const isChecked = ref(true)
 function test(status) {
   alert(status)
   isChecked.value = status
+}
+
+const tableData = {
+  title: [{ title: 'Title 1' }, { title: 'Title 2' }, { title: 'Title 3' }],
+  data: [
+    { id: '1', data1: 'Data', data2: 'Data', data3: 'Data' },
+    { id: '2', data1: 'Data', data2: 'Data', data3: 'Data' },
+    { id: '3', data1: 'Data', data2: 'Data', data3: 'Data' },
+  ],
 }
 </script>
 
@@ -99,6 +109,11 @@ function test(status) {
 
     <!-- Form -->
     <div class="font-bold mt-4">Form</div>
-    <Form />
+    <Form></Form>
+    <Divider class="mt-4" />
+
+    <!-- Table -->
+    <div class="font-bold mt-4">Table</div>
+    <Table :value="tableData"></Table>
   </main>
 </template>
