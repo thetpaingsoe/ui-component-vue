@@ -16,5 +16,12 @@
         Components
       </div></a
     >
+    <a href="/checkout">
+      <div
+        class="hover:cursor-pointer border rounded border-gray-200 p-2 m-2 bg-white w-fit hover:bg-gray-100"
+      >
+        Checkout Component
+      </div></a
+    >
   </main>
 </template>
