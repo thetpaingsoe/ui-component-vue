@@ -16,7 +16,7 @@ describe('Testing Checkout Component', () => {
 
     const cardNumber = wrapper.find('#card-no')
     await cardNumber.setValue('1234123412341234')
-
+    await wrapper.vm.$nextTick()
     expect(cardNumber.element.value).toBe('1234 1234 1234 1234')
   })
 })

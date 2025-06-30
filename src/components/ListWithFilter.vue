@@ -53,13 +53,13 @@ const transactions = [
     <ul class="mt-6">
         <li class="ms-14 mt-2" v-for="transaction in filteredTransactions" :key="transaction.id">
             {{ transaction.merchant }} : 
-            <span v-if="transaction.amount < 0" class="text-red-700"> {{ transaction.amount.toFixed(2) }}</span>
-            <span v-else class="text-green-700"> {{ transaction.amount.toFixed(2) }}</span>
+            <span v-if="transaction.amount < 0" class="text-red-700"> {{ (Number(transaction.amount) | 0).toFixed(2) }}</span>
+            <span v-else class="text-green-700"> {{ (Number(transaction.amount) | 0).toFixed(2) }}</span>
         </li>
     </ul>
     <div class=" border-t border-dashed mt-4 border-gray-300"/>
     <div class="mt-4">
-        <span class="font-bold text-gary-800">TotalAmount : </span> {{ totalAmount.toFixed(2) }}
+        <span class="font-bold text-gary-800">TotalAmount : </span> {{ (Number(totalAmount) | 0).toFixed(2) }}
         <div class="text-sm text-yellow-500" >{{ warningMessage }}</div>
     </div>
 
