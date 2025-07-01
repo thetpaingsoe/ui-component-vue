@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ComponentView from '@/views/ComponentView.vue'
 import ListWithFilterView from '@/views/ListWithFilterView.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
+import InfinityScrollView from '@/views/InfinityScrollView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -26,6 +27,11 @@ const router = createRouter({
       path: '/checkout',
       name: 'checkout',
       component: CheckoutView,
+    },
+    {
+      path: '/infinity-scroll',
+      name: 'infinity-scroll',
+      component: InfinityScrollView,
     },
     {
       path: '/about',
