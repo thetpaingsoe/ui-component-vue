@@ -30,5 +30,12 @@
         Infinity Scroll
       </div>
     </a>
+    <a href="/countdown">
+      <div
+        class="hover:cursor-pointer border rounded border-gray-200 p-2 m-2 bg-white w-fit hover:bg-gray-100"
+      >
+        Countdown
+      </div>
+    </a>
   </main>
 </template>

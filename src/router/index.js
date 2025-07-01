@@ -4,6 +4,7 @@ import ComponentView from '@/views/ComponentView.vue'
 import ListWithFilterView from '@/views/ListWithFilterView.vue'
 import CheckoutView from '@/views/CheckoutView.vue'
 import InfinityScrollView from '@/views/InfinityScrollView.vue'
+import CountdownView from '@/views/CountdownView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -32,6 +33,11 @@ const router = createRouter({
       path: '/infinity-scroll',
       name: 'infinity-scroll',
       component: InfinityScrollView,
+    },
+    {
+      path: '/countdown',
+      name: 'countdown',
+      component: CountdownView,
     },
     {
       path: '/about',
