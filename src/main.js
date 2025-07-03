@@ -1,4 +1,5 @@
 import './assets/main.css'
+import 'vue-neat-modal/dist/vue-neat-modal.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
