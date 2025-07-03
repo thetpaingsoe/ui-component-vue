@@ -3,5 +3,5 @@ import Checkout from '@/components/Checkout.vue'
 </script>
 
 <template>
-  <main class="bg-gray-50 p-6 rounded-lg w-fit"><Checkout /></main>
+  <main class="bg-gray-50 p-6 rounded-lg w-full lg:w-fit"><Checkout /></main>
 </template>

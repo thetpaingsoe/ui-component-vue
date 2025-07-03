@@ -67,16 +67,20 @@ function submit() {
 </script>
 <template>
   <div class="">
-    <div class="flex">
+    <div class="flex lg:flex-row flex-col">
       <div class="flex flex-col w-full p-2 border-2 rounded-lg border-gray-800">
         <span class="material-icons"> credit_card </span>
         <input placeholder="Card" name="card" id="card" class="select-none focus:outline-none" />
       </div>
-      <div class="flex flex-col w-full p-2 border-2 ms-4 rounded-lg border-gray-200">
+      <div
+        class="flex flex-col w-full p-2 border-2 mt-4 lg:mt-0 lg:ms-4 rounded-lg border-gray-200"
+      >
         <span class="material-icons text-gray-500">account_balance</span>
         <input placeholder="ACH bank debit" name="card2" id="card2" />
       </div>
-      <div class="flex flex-col w-fit p-2 border-2 ms-4 rounded-lg border-gray-200">
+      <div
+        class="flex flex-col w-full lg:w-fit p-2 border-2 mt-4 lg:mt-0 lg:ms-4 rounded-lg border-gray-200"
+      >
         <span class="material-icons">more_horiz</span>
         <span />
       </div>
@@ -94,7 +98,7 @@ function submit() {
       />
     </div>
 
-    <div class="flex">
+    <div class="flex flex-col lg:flex-row">
       <div class="flex flex-col w-full">
         <label for="expiry-date" class="mt-4">Expiry Date</label>
         <input
@@ -108,7 +112,7 @@ function submit() {
         />
       </div>
 
-      <div class="ms-4 flex flex-col w-full">
+      <div class="lg:mt-0 lg:ms-4 flex flex-col w-full">
         <label for="security-code" class="mt-4">Security Code</label>
         <input
           id="security-code"
